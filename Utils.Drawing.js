@@ -38,7 +38,7 @@ Util.Drawing = {
                     Element.C2D.lineTo(x1,y1);
                     Element.C2D.lineTo(x2,y2);
                     Element.C2D.closePath();
-                    console.log(fill)
+                    //console.log(fill)
                     if(fill){
                       Element.C2D.fill();
                     }else{
