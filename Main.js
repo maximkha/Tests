@@ -11,6 +11,9 @@ function Myfun() {
     Util.Drawing.InitDraw2d(MyCan);
     MyCan.C2D.lineWidth = 1;
 
+    MyCan.width = window.innerWidth || document.body.clientWidth;
+    MyCan.height = window.innerHeight || document.body.clientHeight;
+
     MyStep = 0;
     MyMaxStep = 200;
     setInterval(Mypic, 100);
