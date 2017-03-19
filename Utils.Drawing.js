@@ -9,8 +9,8 @@ Util.Drawing = {
             Element.C2D = Element.getContext("2d");
             Element.LineBegin = true;
             //All Canvas Function Utilities
-	    Element.x2u = function(x) { return Element.C2D.canvas.width*x; };
-	    Element.y2v = function(y) { return Element.C2D.canvas.height*y; };
+	          Element.x2u = function(x) { return Element.C2D.canvas.width*x; };
+	          Element.y2v = function(y) { return Element.C2D.canvas.height*y; };
 
             Element.color = function(color){Util.Drawing.Internal.C2D.Color(Element,color);};
             Element.clear = function(){ Util.Drawing.Internal.C2D.Clear(Element);};
