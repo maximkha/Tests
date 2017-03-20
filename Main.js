@@ -1,9 +1,66 @@
+document.addEventListener("keydown", kd, false);
+
 Util.Start(1,Myfun);
 Util.Using("Drawing");
 
 var MyCan;
 var MyStep;
 var MyMAxStep;
+
+function Move(m,f){
+  if(f){
+    if (MyStep++==MyMAxStep) MyStep = 0;
+    if (m) {MyStep--;MyStep--;}
+  }
+  MyCan.clear();
+
+  var phi = 2*Math.PI * MyStep/MyMaxStep;
+  var cosphi = Math.cos(phi);
+  var sinphi = Math.sin(phi);
+
+  var rx = 0.4; var ry = 0.2;
+  var x0 = 0.5 + rx*cosphi; var y0 = 0.5 + ry*sinphi;
+  var x1 = 0.5 - rx*sinphi; var y1 = 0.5 + ry*cosphi;
+  var x2 = 0.5 - rx*cosphi; var y2 = 0.5 - ry*sinphi;
+  var x3 = 0.5 + rx*sinphi; var y3 = 0.5 - ry*cosphi;
+
+  var x4 = 0.5; var y4 = 0.1;
+  var x5 = 0.5; var y5 = 0.9;
+
+  var icolor = 65536*128 + 256*128 + 128; // 0x888888
+  var hcolor = "#"+("000000" + icolor.toString(16)).substr(-6);
+
+  MyCan.triangle(MyCan.x2u(x0),MyCan.y2v(y0),MyCan.x2u(x1),MyCan.y2v(y1),MyCan.x2u(x5),MyCan.y2v(y5),false,hcolor);
+  MyCan.triangle(MyCan.x2u(x1),MyCan.y2v(y1),MyCan.x2u(x2),MyCan.y2v(y2),MyCan.x2u(x5),MyCan.y2v(y5),false,hcolor);
+  MyCan.triangle(MyCan.x2u(x2),MyCan.y2v(y2),MyCan.x2u(x3),MyCan.y2v(y3),MyCan.x2u(x5),MyCan.y2v(y5),false,hcolor);
+  MyCan.triangle(MyCan.x2u(x3),MyCan.y2v(y3),MyCan.x2u(x0),MyCan.y2v(y0),MyCan.x2u(x5),MyCan.y2v(y5),false,hcolor);
+
+  MyCan.triangle(MyCan.x2u(x0),MyCan.y2v(y0),MyCan.x2u(x1),MyCan.y2v(y1),MyCan.x2u(x4),MyCan.y2v(y4),false,hcolor);
+  MyCan.triangle(MyCan.x2u(x1),MyCan.y2v(y1),MyCan.x2u(x2),MyCan.y2v(y2),MyCan.x2u(x4),MyCan.y2v(y4),false,hcolor);
+  MyCan.triangle(MyCan.x2u(x2),MyCan.y2v(y2),MyCan.x2u(x3),MyCan.y2v(y3),MyCan.x2u(x4),MyCan.y2v(y4),false,hcolor);
+  MyCan.triangle(MyCan.x2u(x3),MyCan.y2v(y3),MyCan.x2u(x0),MyCan.y2v(y0),MyCan.x2u(x4),MyCan.y2v(y4),false,hcolor);
+}
+
+function kd(e){
+  switch(e.which) {
+        case 37: // left
+          Move(true,true);
+        break;
+
+        //case 38: // up
+        //break;
+
+        case 39: // right
+         Move(false,true);
+        break;
+
+        //case 40: // down
+        //break;
+
+        default: return; // exit this handler for other keys
+    }
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+}
 
 function Myfun() {
 
@@ -16,38 +73,6 @@ function Myfun() {
 
     MyStep = 0;
     MyMaxStep = 200;
-    setInterval(Mypic, 100);
-}
-
-function Mypic() {
-
-    if (MyStep++==MyMaxStep) MyStep = 0;
-
-    MyCan.clear();
-
-    var phi = 2*Math.PI * MyStep/MyMaxStep;
-    var cosphi = Math.cos(phi);
-    var sinphi = Math.sin(phi);
-
-    var rx = 0.4; var ry = 0.2;
-    var x0 = 0.5 + rx*cosphi; var y0 = 0.5 + ry*sinphi;
-    var x1 = 0.5 - rx*sinphi; var y1 = 0.5 + ry*cosphi;
-    var x2 = 0.5 - rx*cosphi; var y2 = 0.5 - ry*sinphi;
-    var x3 = 0.5 + rx*sinphi; var y3 = 0.5 - ry*cosphi;
-
-    var x4 = 0.5; var y4 = 0.1;
-    var x5 = 0.5; var y5 = 0.9;
-
-    var icolor = 65536*128 + 256*128 + 128; // 0x888888
-    var hcolor = "#"+("000000" + icolor.toString(16)).substr(-6);
-
-    MyCan.triangle(MyCan.x2u(x0),MyCan.y2v(y0),MyCan.x2u(x1),MyCan.y2v(y1),MyCan.x2u(x5),MyCan.y2v(y5),false,hcolor);
-    MyCan.triangle(MyCan.x2u(x1),MyCan.y2v(y1),MyCan.x2u(x2),MyCan.y2v(y2),MyCan.x2u(x5),MyCan.y2v(y5),false,hcolor);
-    MyCan.triangle(MyCan.x2u(x2),MyCan.y2v(y2),MyCan.x2u(x3),MyCan.y2v(y3),MyCan.x2u(x5),MyCan.y2v(y5),false,hcolor);
-    MyCan.triangle(MyCan.x2u(x3),MyCan.y2v(y3),MyCan.x2u(x0),MyCan.y2v(y0),MyCan.x2u(x5),MyCan.y2v(y5),false,hcolor);
-
-    MyCan.triangle(MyCan.x2u(x0),MyCan.y2v(y0),MyCan.x2u(x1),MyCan.y2v(y1),MyCan.x2u(x4),MyCan.y2v(y4),false,hcolor);
-    MyCan.triangle(MyCan.x2u(x1),MyCan.y2v(y1),MyCan.x2u(x2),MyCan.y2v(y2),MyCan.x2u(x4),MyCan.y2v(y4),false,hcolor);
-    MyCan.triangle(MyCan.x2u(x2),MyCan.y2v(y2),MyCan.x2u(x3),MyCan.y2v(y3),MyCan.x2u(x4),MyCan.y2v(y4),false,hcolor);
-    MyCan.triangle(MyCan.x2u(x3),MyCan.y2v(y3),MyCan.x2u(x0),MyCan.y2v(y0),MyCan.x2u(x4),MyCan.y2v(y4),false,hcolor);
+    //setInterval(Mypic, 100);
+    Move(false,false);
 }
