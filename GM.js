@@ -7,12 +7,17 @@ function SelectMenu(m){
   var sm = document.getElementById("SettingMenu");
   if(m==0){
     sm.innerHTML=FovMenu+Close;
+    document.getElementById("thetaText").value = MySage.thetaView;
+    document.getElementById("phiText").value = MySage.phiView;
   }
   if(m==1){
     sm.innerHTML=MovementMenu+Close;
+    document.getElementById("wsText").value = Speed;
+    document.getElementById("tsText").value = tSpeed;
   }
   if(m==2){
     sm.innerHTML=RenderMenu+Close;
+    document.getElementById("dsText").value = MySage.rDistance;
   }
 }
 
