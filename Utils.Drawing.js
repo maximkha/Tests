@@ -104,7 +104,7 @@ Util.Drawing = {
                     //console.log(x,y);
                     if(Element.LineBegin){
                         //console.log("Begin!");
-                        //Element.C2D.beginPath();
+                        Element.C2D.beginPath();
                         Element.C2D.moveTo(x,y);
                         Element.LineBegin = false;
                     }else{
@@ -113,8 +113,7 @@ Util.Drawing = {
                     }
                 },
                 DrawLines: function(Element,fill)
-                {
-                    //Element.C2D.closePath();
+                {    
                     if(fill)
                     {
                         Element.C2D.fill();
@@ -124,7 +123,7 @@ Util.Drawing = {
                         //console.log("draw");
                     }
                     Element.LineBegin = true;
-                    //Element.C2D.closePath();
+                    Element.C2D.closePath();
                 },
                 Text: function(Element,x,y,Text,fill) {
                     if(fill){

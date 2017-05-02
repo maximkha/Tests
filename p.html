@@ -1,11 +1,27 @@
 <html>
        <body onload="">
-        <canvas id="MyCanvas"></canvas>
+        <div id="cnt"><canvas id="MyCanvas"></canvas>
+        <div id="GameOptions">
+          <select id="GameMenu" size="5">
+            <option onclick="SelectMenu(0);">FOV</option>
+            <option onclick="SelectMenu(1);">Movement Speed</option>
+            <option onclick="SelectMenu(2);">Rendering</option>
+          </select>
+          <button type="button" onclick="closeMenu()">Close</button>
+          <div id="SettingMenu"></div>
+        </div></div>
     </body>
         <head>
-        <meta charset="utf-8"/>
+          <meta charset="utf-8"/>
+          <script src="Util.js"></script>
+          <script src="SageEngine.js"></script>
+          <script src="WorldData.js"></script>
+          <script src="GM.js"></script>
+          <script src="CameraGui.js"></script>
+          <style>#cnt canvas, #GameOptions {
+  position: absolute;
+}
+option:hover, option:active, option:focus{outline: 0;}
+          </style>
         </head>
-        <script src="Util.js"></script>
-	      <!-- <script src="Main.js"></script> -->
-        <script src="CameraGui.js"></script>
 </html>
